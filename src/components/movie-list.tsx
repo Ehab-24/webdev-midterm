@@ -12,7 +12,6 @@ export default function MovieList() {
         try {
             axios.get(`https://www.omdbapi.com/?&apikey=${OMDB_API_KEY}&s=Movie&page=1`)
                 .then(res => {
-                    console.log("OMDB response:", res.data)
                     if (!!res.data.Search) {
                         setMovies(res.data.Search)
                     }

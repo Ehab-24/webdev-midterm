@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Button } from "./ui/button"
 
 export default function MovieCard({ movie }: { movie: any }) {
@@ -18,17 +19,6 @@ export default function MovieCard({ movie }: { movie: any }) {
                     </h3>
                     <p className="leading-7 [&:not(:first-child)]:mt-6">
                         Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</p>
-                    <p className="leading-7 [&:not(:first-child)]:mt-6">
-                        Language</p>
-                </div>
-
-                <div className="flex items-center h-min gap-1 min-w-max">
-                    <img
-                        src="../../public/star.svg"
-                        alt="star"
-                        className="w-4 h-4"
-                    />
-                    <p className="leading-7">5.0</p>
                 </div>
             </div>
 
@@ -38,8 +28,10 @@ export default function MovieCard({ movie }: { movie: any }) {
                     {movie.Year}
                 </p>
 
-                <Button>
-                    Book Now
+                <Button asChild>
+                    <Link to={`/movie/?i=${movie.imdbID}`}>
+                        Details
+                    </Link>
                 </Button>
             </div>
 
