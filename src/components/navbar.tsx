@@ -23,13 +23,16 @@ export default function Navbar() {
             </div>
 
             <NavigationMenuList className="flex w-full min-w-full py-3 px-4 md:px-8">
-                <div className="">
-                    <NavigationMenuItem>
-                        <Button asChild variant={"ghost"}>
-                            <Link to="/">Home</Link>
-                        </Button>
-                    </NavigationMenuItem>
-                </div>
+                <NavigationMenuItem>
+                    <Button asChild variant={"ghost"}>
+                        <Link to="/">Home</Link>
+                    </Button>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <Button asChild variant={"ghost"}>
+                        <Link to="/favorites">Favorites</Link>
+                    </Button>
+                </NavigationMenuItem>
             </NavigationMenuList>
 
             <div className="w-40">

@@ -1,20 +1,24 @@
 import MovieList from "../movie-list";
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { OMDB_API_KEY } from "@/constants"
+import { FAVORITES_KEY, OMDB_API_KEY } from "@/constants"
+import { getArray } from "@/lib/utils";
 
-export default function Home() {
+export default function Favorites() {
 
     const [movies, setMovies] = useState<any>([])
 
     useEffect(() => {
         try {
-            axios.get(`https://www.omdbapi.com/?&apikey=${OMDB_API_KEY}&s=Movie&page=1`)
-                .then(res => {
-                    if (!!res.data.Search) {
-                        setMovies(res.data.Search)
-                    }
-                })
+            const favs = getArray(FAVORITES_KEY)
+            let promises = favs.map(fav => {
+                return axios.get(`https://www.omdbapi.com/?&apikey=${OMDB_API_KEY}&i=${fav}`)
+            })
+            Promise.all(promises).then(res => {
+                console.log(res)
+                let ms = res.map(r => r.data)
+                setMovies(ms)
+            })
         } catch (error) {
             console.log(error)
         }
